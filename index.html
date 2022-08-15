@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E4 JS</title>
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">  
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+    <h1>Buscador de pizzas</h1>
+    <h3>Mozzarella - Jamon - Pollo - Calabresa - Napolitana</h3>
+    <div class="contenedor">
+        <form id="buscador">
+            <div class="row">
+                <div class="three columns">
+                    <label for="nombre">Nombre de pizza</label>
+                    <form id="form">
+                        <input id="nombre"
+                          type="text"
+                          placeholder="Buscar Pizza"
+                        />
+                      </form>
+                </div>
+                <div class="three columns">
+                    <label for="minimo">Precio Min</label>
+                    <select class="u-full-width" id="minimo">
+                            <option value="">Seleccione</option>
+                            <option value="500">500</option>
+                            <option value="550">550</option>
+                            <option value="600">600</option>
+                            <option value="650">650</option>
+                            <option value="700">700</option>
+                    </select>
+                </div>
+                <div class="three columns">
+                    <label for="maximo">Precio Max</label>
+                    <select class="u-full-width" id="maximo">
+                            <option value="">Seleccione</option>
+                            <option value="500">500</option>
+                            <option value="550">550</option>
+                            <option value="600">600</option>
+                            <option value="650">650</option>
+                            <option value="700">700</option>
+                    </select>
+                </div>
+                    <div class="three columns">
+                        <label for="ingredientes">Ingredientes</label>
+                        <select class="u-full-width" id="ingredientes">
+                                <option value="">Seleccione</option>
+                                <option value="salsa de tomate">salsa de tomate</option>
+                                <option value="doble mozzarella">doble mozzarella</option>
+                                <option value="mozzarella y jamon">mozzarella y jamon</option>
+                                <option value="jamon y tomate">jamon y tomate</option>
+                                <option value="calabresa">calabresa</option>
+                                <option value="calabresa y tomate">calabresa y tomate</option>
+                                <option value="mozzarella y pollo">mozzarella y pollo</option>
+                                <option value="pollo y cheddar">pollo y cheddar</option>
+                                <option value="mozarrella y tomate">mozarrella y tomate</option>
+
+
+                        </select>
+                    </div>   
+                </div>
+            </form>
+
+
+        <h1>Resultados</h1>
+<!-------------- //DIV VACIO -------------------------------------------->
+        <div id="resultado"></div>
+    </div>
+    <footer>
+        <a href="https://github.com/gonzzzalo2090">https://github.com/gonzzzalo2090</a>
+    </footer>
+    
+
+    <script src="js/baseDeDatos.js"></script>
+    <script src="js/app.js"></script>
+    
+</body>
+</html>
