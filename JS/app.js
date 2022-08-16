@@ -17,6 +17,7 @@ const datosBusqueda = {
 
 //////////////////EVENTS/////////////////////////////////
 document.addEventListener("DOMContentLoaded", () => {
+  getLocalStorage()
   mostrarPizzas(pizzas); //muestra las pizzas al cargar la pagina
 });
 
@@ -24,18 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
 nombre.addEventListener("change", (e) => {
   datosBusqueda.nombre = e.target.value;
   filtrarPizza();
+  saveLocalStorage(datosBusqueda)
 })
 minimo.addEventListener("change", (e) => {
   datosBusqueda.minimo = e.target.value;
   filtrarPizza()
+  saveLocalStorage(datosBusqueda)
 })
 maximo.addEventListener("change", (e) => {
   datosBusqueda.maximo = e.target.value;
   filtrarPizza()
+  saveLocalStorage(datosBusqueda)
 })
 ingredientes.addEventListener("change", (e) => {
   datosBusqueda.ingredientes = e.target.value;
   filtrarPizza()
+  saveLocalStorage(datosBusqueda)
 })
 
 
@@ -46,6 +51,7 @@ ingredientes.addEventListener("change", (e) => {
 //////////////funcion de mostrar los pizzas con sus caracteristicas
 const mostrarPizzas = (pizzas) => {
   limpiarHTML() //BORRO EL HTML QUE ESTABA ANTES
+  
 
   //itero sobre el array de pizzas
   pizzas.forEach((pizza) => {
@@ -58,6 +64,8 @@ const mostrarPizzas = (pizzas) => {
     //inserto el html(pizzaHTML) en donde yo elijo, en este caso donde esta el id resultado
     resultado.appendChild(pizzaHTML);
   });
+  
+  
 };
 
 
@@ -72,20 +80,42 @@ const limpiarHTML = () => {
 
 
 
-/////////////Funcion que filtra en base a la busqueda
+/////////////Funcion que filtra en base a la busqueda///////////////////
 function filtrarPizza(){
   const resultado = pizzas.filter(filtrarNombre).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarIngredientes)
-
-  mostrarPizzas(resultado)
+  //si hay algo entonces muestra las pizzas
+  if(resultado.length){
+    mostrarPizzas(resultado)
+  }else{
+    limpiarHTML()
+    //si no hay coincidencia limpia la pagina y muestra el error
+    Toastify({
+    text: "Pizza no encontrada 😞",
+               duration: 3000,
+               gravity: "top",
+               position: "right",
+               style: {
+                   borderRadius: "5rem",
+                   padding: "2rem",
+                   fontSize: "2rem",
+                   background: "linear-gradient(to right, #00b09b, #96c92d)"
+               },
+               borderRadius: "5rem",
+           }).showToast();
+  }
+  
 }
 
 
+
+////////////////////////Funciones para cada busqueda/////////////////
 
 function filtrarNombre(pizza) {
   if(datosBusqueda.nombre){
     return pizza.nombre === datosBusqueda.nombre;
   }
   return pizza;
+  
 }
 
 function filtrarMinimo(pizza) {
@@ -108,3 +138,19 @@ function filtrarIngredientes(pizza) {
   }
   return pizza;
 }
+
+/////////////////////////local storage/////////////////////
+function saveLocalStorage(datosBusqueda) {
+ localStorage.setItem("busquedas", JSON.stringify(datosBusqueda));
+}
+
+function getLocalStorage(){
+  JSON.parse(localStorage.getItem("busquedas"));
+ }
+
+
+
+
+
+
+ 

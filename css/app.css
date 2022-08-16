@@ -85,3 +85,9 @@ form {
 .sitio-web:hover {
     color: white;
 }
+.resultado__fondo{
+    background-color: #ffb048;
+}
+.u-full-width{
+    border-radius: 5rem;
+}
